@@ -1,0 +1,37 @@
+@let item = product();
+<article class="card" [class.card--matcha]="isDrink()">
+  <div class="card__media">
+    @if (item.image; as src) {
+      <img
+        [ngSrc]="src"
+        [alt]="item.name + ': ' + item.description"
+        fill
+        sizes="(min-width: 64rem) 33vw, (min-width: 36rem) 50vw, 100vw"
+      />
+    } @else {
+      <!-- FOTO REAL: cuando exista, agrega su ruta en `image` (core/data/menu.data.ts) y reemplaza esta ilustración. -->
+      <app-food-illustration class="card__illustration" [kind]="illustration()" />
+    }
+  </div>
+
+  <div class="card__body">
+    <div class="card__heading">
+      <h3 class="card__name">{{ item.name }}</h3>
+      @if (showVegBadge()) {
+        <span class="card__badge">Vegetariano</span>
+      }
+    </div>
+    <p class="card__desc">{{ item.description }}</p>
+
+    @if (showPrice()) {
+      <ul class="card__options">
+        @for (option of item.options; track option.label) {
+          <li class="card__option">
+            <span class="card__option-label">{{ option.label }}</span>
+            <span class="card__price">{{ option.price | currency: 'CLP' : 'symbol-narrow' : '1.0-0' }}</span>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</article>

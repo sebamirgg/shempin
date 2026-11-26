@@ -1,0 +1,26 @@
+<section class="story section" aria-labelledby="story-title">
+  <div class="container story__inner">
+    <div>
+      <app-section-header
+        headingId="story-title"
+        eyebrow="Nuestra historia"
+        heading="Una familia, harta masa y mucho cariño"
+      />
+      <div class="story__text" appReveal [appRevealDelay]="100">
+        <p>
+          Shempin nació en la cocina de la casa. Entre todos amasamos, rellenamos y cerramos
+          cada dumpling y cada empanada a mano, uno por uno.
+        </p>
+        <p>
+          Con el café es igual: grano de especialidad, preparado con calma. Ahora salimos con el carro
+          a compartir contigo lo que nos gusta comer.
+        </p>
+      </div>
+    </div>
+
+    <!-- FOTO REAL: aquí puede ir una foto de la familia trabajando o de las manos haciendo el repulgue. -->
+    <div class="story__art" aria-hidden="true" appReveal [appRevealDelay]="200">
+      <app-isotipo class="story__iso" [animated]="true" />
+    </div>
+  </div>
+</section>

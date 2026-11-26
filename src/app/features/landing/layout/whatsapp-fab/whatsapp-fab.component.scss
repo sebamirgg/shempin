@@ -1,0 +1,37 @@
+@use '../../../../../styles/breakpoints' as bp;
+@use '../../../../../styles/spacing' as sp;
+
+:host {
+  display: block;
+}
+
+.fab {
+  position: fixed;
+  right: sp.$space-md;
+  bottom: sp.$space-md;
+  z-index: 40;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s var(--ease-out),
+    visibility 0.25s;
+
+  &--hidden {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  @include bp.up(md) {
+    display: none;
+  }
+
+  // El estilo de marca viene del botón `whatsapp`; aquí solo se vuelve redondo y grande.
+  a {
+    width: 3.75rem;
+    height: 3.75rem;
+    padding: 0;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px var(--color-sombra);
+    --focus-ring: var(--color-aji);
+  }
+}

@@ -1,0 +1,69 @@
+@use '../../../../../../styles/breakpoints' as bp;
+@use '../../../../../../styles/spacing' as sp;
+
+:host {
+  display: block;
+  margin-bottom: sp.$space-lg;
+}
+
+.highlight {
+  display: grid;
+  gap: sp.$space-md;
+  padding: sp.$card-padding;
+  background: var(--color-carbon);
+  color: var(--color-papel);
+  border-radius: var(--radius-lg);
+
+  @include bp.up(md) {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: sp.$space-xl;
+  }
+}
+
+.highlight__title {
+  font-size: clamp(1.375rem, 4vw, 1.75rem);
+  color: var(--color-dorado);
+}
+
+.highlight__subtitle {
+  margin-top: sp.$space-2xs;
+  opacity: 0.9;
+}
+
+.highlight__prices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: sp.$space-sm sp.$space-xl;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlight__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: sp.$space-2xs sp.$space-sm;
+}
+
+.highlight__label {
+  font-weight: 700;
+}
+
+.highlight__price {
+  font-size: 2.25rem;
+  line-height: 1;
+  font-weight: 800;
+}
+
+/* Carbón sobre dorado; nunca blanco */
+.highlight__badge {
+  align-self: center;
+  padding: 0.2rem 0.7rem;
+  background: var(--color-dorado);
+  color: var(--color-carbon);
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 700;
+}

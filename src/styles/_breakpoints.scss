@@ -1,0 +1,24 @@
+@use 'sass:map';
+
+// Mobile-first: los estilos base son para móvil y se amplían hacia arriba.
+$breakpoints: (
+  sm: 36rem,
+  md: 48rem,
+  lg: 64rem,
+  xl: 80rem,
+);
+
+@mixin up($bp) {
+  @if not map.has-key($breakpoints, $bp) {
+    @error 'Breakpoint desconocido: #{$bp}';
+  }
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

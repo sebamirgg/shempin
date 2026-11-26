@@ -1,0 +1,52 @@
+<svg viewBox="0 0 120 100" focusable="false">
+  @switch (kind()) {
+    @case ('dumpling') {
+      <ellipse class="i-shadow" cx="60" cy="86" rx="44" ry="6" />
+      <path class="i-line i-dough" d="M14 70C12 40 38 22 60 22s48 18 46 48C88 82 32 82 14 70Z" />
+      <path class="i-line" d="M40 30c4 8 4 16 2 22M60 22c2 10 2 20 0 28M80 30c-4 8-4 16-2 22" />
+      <path class="i-line" d="M28 42c6 4 8 10 6 16M92 42c-6 4-8 10-6 16" />
+    }
+    @case ('empanada') {
+      <ellipse class="i-shadow" cx="60" cy="86" rx="48" ry="6" />
+      <path class="i-line i-gold" d="M10 78a50 50 0 0 1 100 0Z" />
+      <path class="i-crimp" d="M18 76a42 42 0 0 1 84 0" />
+      <path class="i-line" d="M48 52l5 4M60 46v7M72 52l-5 4" />
+    }
+    @case ('frio') {
+      <ellipse class="i-shadow" cx="60" cy="90" rx="30" ry="5" />
+      <path class="i-straw" d="M72 6l-8 40" />
+      <path class="i-gold" d="M41 40h38l-4 46H45Z" />
+      <rect class="i-line i-ice" x="48" y="46" width="12" height="12" rx="2" transform="rotate(-10 54 52)" />
+      <rect class="i-line i-ice" x="62" y="54" width="11" height="11" rx="2" transform="rotate(12 67 59)" />
+      <path class="i-line" d="M38 22h44l-6 66H44Z" />
+    }
+    @case ('cheesecake') {
+      <!-- Trozo visto de lado: base de galleta dorada, relleno papel y cubierta de frutos rojos -->
+      <ellipse class="i-shadow" cx="60" cy="88" rx="48" ry="6" />
+      <path class="i-line i-paper" d="M12 58L104 64V80L12 74Z" />
+      <path class="i-gold" d="M12 70L104 76V80L12 74Z" />
+      <path class="i-line i-aji" d="M12 50L60 34L104 56Z" />
+      <path class="i-line" d="M12 50V74M104 56V80M12 50L104 56" />
+      <path class="i-line" d="M12 70L104 76" />
+    }
+    @case ('kuchen') {
+      <!-- Trozo con masa dorada y fruta de temporada encima -->
+      <ellipse class="i-shadow" cx="60" cy="88" rx="48" ry="6" />
+      <path class="i-line i-gold" d="M12 58L104 64V80L12 74Z" />
+      <path class="i-line i-paper" d="M12 50L60 34L104 56Z" />
+      <path class="i-line" d="M12 50V58M104 56V64M12 50L104 56" />
+      <circle class="i-line i-aji" cx="40" cy="46" r="4.5" />
+      <circle class="i-line i-aji" cx="58" cy="42" r="4.5" />
+      <circle class="i-line i-aji" cx="76" cy="50" r="4.5" />
+      <path class="i-line" d="M34 66l4 1M60 68l4 1M84 70l4 1" />
+    }
+    @default {
+      <!-- café y matcha comparten la taza; cambia el color del líquido -->
+      <ellipse class="i-shadow" cx="58" cy="90" rx="44" ry="6" />
+      <ellipse class="i-line i-paper" cx="58" cy="84" rx="42" ry="6" />
+      <path class="i-line" d="M88 46c16 0 16 24-2 24" />
+      <path class="i-line i-paper" d="M26 38h64v22c0 16-14 24-32 24S26 76 26 60Z" />
+      <ellipse [class]="kind() === 'matcha' ? 'i-matcha' : 'i-coffee'" cx="58" cy="38" rx="32" ry="5" />
+    }
+  }
+</svg>

@@ -1,0 +1,62 @@
+<section class="menu section" aria-labelledby="menu-title">
+  <div class="container">
+    <app-section-header
+      headingId="menu-title"
+      eyebrow="La carta"
+      heading="Hecho a mano, servido calentito"
+      [subtitle]="'Elige tu antojo. ' + priceNote + '.'"
+    />
+
+    <div class="tabs" role="tablist" aria-label="Categorías del menú" (keydown)="onTabKeydown($event)">
+      @for (category of categories(); track category.id) {
+        <button
+          #tab
+          type="button"
+          role="tab"
+          class="tab"
+          [class.tab--matcha]="category.id === 'bebestibles'"
+          [id]="'tab-' + category.id"
+          [attr.aria-selected]="selected() === category.id"
+          [attr.aria-controls]="'panel-' + category.id"
+          [tabIndex]="selected() === category.id ? 0 : -1"
+          (click)="select(category.id)"
+        >
+          {{ category.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Todos los paneles quedan en el DOM (bueno para SEO); solo se muestra el activo. -->
+    @for (category of categories(); track category.id) {
+      <div
+        class="panel"
+        role="tabpanel"
+        tabindex="0"
+        [id]="'panel-' + category.id"
+        [attr.aria-labelledby]="'tab-' + category.id"
+        [hidden]="selected() !== category.id"
+      >
+        <div class="panel__intro">
+          <p class="panel__kicker">{{ category.kicker }}</p>
+          <p class="panel__tagline">{{ category.tagline }}</p>
+        </div>
+
+        @if (category.sharedPricing; as shared) {
+          <app-portion-highlight
+            [heading]="shared.heading"
+            [subtitle]="shared.subtitle"
+            [options]="sharedOptions()[category.id]"
+          />
+        }
+
+        <ul class="panel__grid">
+          @for (product of productsByCategory()[category.id]; track product.id; let i = $index) {
+            <li appReveal [appRevealDelay]="i * 80">
+              <app-product-card [product]="product" [showPrice]="!category.sharedPricing" />
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</section>

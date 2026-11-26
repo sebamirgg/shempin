@@ -1,0 +1,112 @@
+@use '../../../../../styles/breakpoints' as bp;
+@use '../../../../../styles/spacing' as sp;
+
+:host {
+  display: block;
+}
+
+.menu {
+  background: var(--color-papel-tostado);
+}
+
+/* Móvil: scroll horizontal con snap. Desde sm: píldora compacta. */
+.tabs {
+  display: flex;
+  gap: sp.$space-xs;
+  margin: 0 (-(sp.$grid-gap)) sp.$space-lg;
+  padding: sp.$space-2xs sp.$grid-gap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include bp.up(sm) {
+    display: inline-flex;
+    margin-inline: 0;
+    padding: 0.375rem;
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-pill);
+  }
+}
+
+.tab {
+  --tab-accent: var(--color-aji);
+
+  flex: 0 0 auto;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-pill);
+  color: var(--color-carbon);
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  @include bp.up(sm) {
+    border-color: transparent;
+    background: none;
+  }
+
+  &--matcha {
+    --tab-accent: var(--color-matcha);
+  }
+
+  &:hover {
+    color: var(--tab-accent);
+  }
+
+  &[aria-selected='true'] {
+    background: var(--tab-accent);
+    border-color: var(--tab-accent);
+    color: var(--color-blanco);
+  }
+}
+
+.panel {
+  border-radius: var(--radius-md);
+}
+
+/* Como en la carta impresa: bajada en mayúsculas espaciadas y una línea gruesa en carbón */
+.panel__intro {
+  margin-bottom: sp.$space-lg;
+  padding-bottom: sp.$space-md;
+  border-bottom: 3px solid var(--color-carbon);
+}
+
+.panel__kicker {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-carbon);
+}
+
+.panel__tagline {
+  max-width: 40rem;
+  margin-top: sp.$space-2xs;
+  color: var(--color-texto-suave);
+}
+
+.panel__grid {
+  display: grid;
+  gap: sp.$grid-gap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp.up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: sp.$grid-gap-lg;
+  }
+}

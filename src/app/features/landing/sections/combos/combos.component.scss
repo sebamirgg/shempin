@@ -1,0 +1,23 @@
+@use '../../../../../styles/breakpoints' as bp;
+@use '../../../../../styles/spacing' as sp;
+
+:host {
+  display: block;
+}
+
+.combos__grid {
+  display: grid;
+  gap: sp.$grid-gap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp.up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: sp.$grid-gap-lg;
+  }
+}

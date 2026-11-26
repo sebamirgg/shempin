@@ -1,0 +1,44 @@
+@let item = combo();
+<article class="combo">
+  <!-- FOTO REAL: aquí puede ir una foto del combo armado. -->
+  <div class="combo__art" aria-hidden="true">
+    @for (kind of illustrations(); track $index) {
+      <app-food-illustration class="combo__illustration" [kind]="kind" />
+    }
+  </div>
+
+  <div class="combo__body">
+    <div class="combo__heading">
+      <h3 class="combo__name">{{ item.name }}</h3>
+      @if (item.note) {
+        <span class="combo__note">{{ item.note }}</span>
+      }
+    </div>
+    <p class="combo__summary">{{ item.summary }}</p>
+    <p class="combo__desc">{{ item.description }}</p>
+
+    <p class="combo__includes-title">Incluye</p>
+    <ul class="combo__includes">
+      @for (included of item.items; track included.label) {
+        <li>{{ included.label }}</li>
+      }
+    </ul>
+
+    <div class="combo__footer">
+      <p class="combo__price">{{ item.price | currency: 'CLP' : 'symbol-narrow' : '1.0-0' }}</p>
+      @if (savings(); as saved) {
+        <p class="combo__savings">
+          Ahorras {{ saved.upTo ? 'hasta ' : '' }}{{ saved.amount | currency: 'CLP' : 'symbol-narrow' : '1.0-0' }}
+          <span class="visually-hidden">frente a comprar por separado</span>
+        </p>
+      }
+    </div>
+
+    @if (orderUrl(); as url) {
+      <a class="combo__order" appButton="whatsapp" [href]="url" target="_blank" rel="noopener noreferrer">
+        Pedir por WhatsApp
+        <span class="visually-hidden">{{ item.name }} (se abre en una pestaña nueva)</span>
+      </a>
+    }
+  </div>
+</article>

@@ -1,0 +1,29 @@
+:host {
+  display: block;
+}
+
+main {
+  display: block;
+}
+
+/* Reserva espacio (y color de fondo) mientras carga cada @defer, para evitar saltos de layout */
+.defer-placeholder {
+  min-height: 36rem;
+
+  &--tostado {
+    background: var(--color-papel-tostado);
+  }
+
+  &--aji {
+    background: var(--color-aji);
+  }
+
+  &--dorado {
+    background: var(--color-dorado);
+  }
+
+  &--strip {
+    min-height: 7rem;
+    background: var(--color-carbon);
+  }
+}

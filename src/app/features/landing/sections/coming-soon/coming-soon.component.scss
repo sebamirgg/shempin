@@ -1,0 +1,104 @@
+@use '../../../../../styles/breakpoints' as bp;
+@use '../../../../../styles/spacing' as sp;
+
+/* Carbón sobre dorado (≈9:1). Nada de texto blanco aquí. */
+:host {
+  display: block;
+  --section-eyebrow-color: var(--color-carbon);
+  --section-subtitle-color: var(--color-carbon);
+  --btn-secondary-color: var(--color-carbon);
+}
+
+.soon {
+  background: var(--color-dorado);
+  color: var(--color-carbon);
+}
+
+.soon__layout {
+  display: grid;
+  gap: sp.$grid-gap;
+
+  @include bp.up(lg) {
+    grid-template-columns: 1fr 2fr;
+    gap: sp.$grid-gap-lg;
+  }
+}
+
+/* Dato destacado: papel sobre carbón */
+.soon__opening {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: sp.$space-xs;
+  padding: sp.$card-padding;
+  background: var(--color-carbon);
+  color: var(--color-papel);
+  border-radius: var(--radius-lg);
+}
+
+.soon__opening-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+}
+
+.soon__opening-date {
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: capitalize;
+}
+
+.soon__list {
+  display: grid;
+  gap: sp.$grid-gap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.soon__item {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: sp.$grid-gap;
+  align-items: start;
+  padding: sp.$card-padding;
+  background: var(--color-papel);
+  border-radius: var(--radius-lg);
+
+  @include bp.up(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.soon__art {
+  max-width: 7rem;
+}
+
+.soon__when {
+  display: inline-block;
+  margin-bottom: sp.$space-xs;
+  padding: 0.2rem 0.7rem;
+  background: var(--color-carbon);
+  color: var(--color-papel);
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.soon__title {
+  margin-bottom: sp.$space-xs;
+  font-size: 1.375rem;
+}
+
+.soon__cta {
+  margin-top: sp.$space-2xl;
+  text-align: center;
+}

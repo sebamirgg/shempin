@@ -1,0 +1,54 @@
+@use '../../../../styles/breakpoints' as bp;
+
+:host {
+  display: block;
+  width: 3rem;
+  color: var(--steam-color, var(--color-texto-suave));
+  pointer-events: none;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.wisp {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: rise 3.2s ease-in-out infinite;
+
+  &--2 {
+    animation-delay: 1s;
+  }
+
+  &--3 {
+    animation-delay: 2s;
+  }
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scaleY(0.9);
+  }
+  35% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-14px) scaleY(1.05);
+  }
+}
+
+@include bp.reduced-motion {
+  .wisp {
+    animation: none;
+    opacity: 0.45;
+  }
+}

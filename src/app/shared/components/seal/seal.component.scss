@@ -1,0 +1,89 @@
+@use '../../../../styles/breakpoints' as bp;
+
+:host {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  container-type: inline-size;
+}
+
+.seal__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.seal__outer {
+  fill: var(--color-dorado);
+  stroke: var(--color-carbon);
+  stroke-width: 2.5;
+}
+
+.seal__inner {
+  fill: var(--color-aji);
+  stroke: var(--color-carbon);
+  stroke-width: 2.5;
+}
+
+.seal__text {
+  fill: var(--color-carbon);
+  font-family: var(--font-base);
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+.seal__spin {
+  transform-box: view-box;
+  transform-origin: center;
+
+  &--animated {
+    animation: seal-spin 60s linear infinite;
+  }
+}
+
+@keyframes seal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@include bp.reduced-motion {
+  .seal__spin--animated {
+    animation: none;
+  }
+}
+
+.seal__center {
+  position: absolute;
+  inset: 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-papel);
+  text-align: center;
+}
+
+.seal__iso {
+  width: 50%;
+  margin-top: -6%;
+  --iso-steam: var(--color-papel);
+}
+
+.seal__word {
+  margin-top: 4%;
+  font-size: 13cqi;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.seal__since {
+  margin-top: 4%;
+  font-size: 3.4cqi;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}

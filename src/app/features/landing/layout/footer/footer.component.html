@@ -1,0 +1,51 @@
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <app-logo class="footer__logo" layout="horizontal" tone="inverse" />
+      <p class="footer__tagline">Carro móvil de comida al paso, hecha a mano.</p>
+    </div>
+
+    <div class="footer__col">
+      <h2 class="footer__heading">Horario</h2>
+      <dl class="footer__hours">
+        @for (slot of business.openingHours; track slot.days) {
+          <div>
+            <dt>{{ slot.days }}</dt>
+            <dd>{{ slot.hours }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+
+    <div class="footer__col">
+      <h2 class="footer__heading">Contacto</h2>
+      <ul class="footer__social">
+        <li>
+          <a class="footer__link" [href]="instagramUrl" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle class="footer__dot" cx="17.3" cy="6.7" r="1" />
+            </svg>
+            &#64;{{ instagramHandle }}
+            <span class="visually-hidden">en Instagram (se abre en una pestaña nueva)</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5Z" />
+            </svg>
+            WhatsApp
+            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {{ year }} Shempin · Dumplings, empanadas cóctel y café de especialidad.</p>
+    <p>{{ business.priceNote }}</p>
+  </div>
+</footer>

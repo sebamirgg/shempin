@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  line-height: 0;
+  background: var(--divider-bottom);
+}
+
+.divider {
+  display: block;
+  height: 28px;
+}
+
+.divider__fold {
+  fill: var(--divider-top);
+}
+
+.divider__pleat {
+  fill: none;
+  stroke: var(--color-carbon);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.18;
+}

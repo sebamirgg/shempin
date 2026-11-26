@@ -1,0 +1,153 @@
+@use '../../../../../styles/breakpoints' as bp;
+@use '../../../../../styles/spacing' as sp;
+
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: block;
+}
+
+/* Transparente sobre el hero; papel con sombra al hacer scroll (o con el menú móvil abierto). */
+.header {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &--solid {
+    background: var(--color-papel);
+    border-color: var(--color-borde);
+    box-shadow: 0 6px 20px var(--color-sombra);
+  }
+}
+
+.header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-h);
+}
+
+.header__brand {
+  display: inline-flex;
+  align-items: center;
+  padding-block: sp.$space-2xs;
+  text-decoration: none;
+  --logo-size: 1.125rem;
+}
+
+.header__toggle {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--color-carbon);
+  cursor: pointer;
+
+  @include bp.up(lg) {
+    display: none;
+  }
+}
+
+.header__burger,
+.header__burger::before,
+.header__burger::after {
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.header__burger {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+  &::before {
+    top: -7px;
+  }
+  &::after {
+    top: 7px;
+  }
+
+  &.is-open {
+    background: transparent;
+    &::before {
+      transform: translateY(7px) rotate(45deg);
+    }
+    &::after {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+
+/* Móvil: panel desplegable. display:none lo saca del orden de tabulación cuando está cerrado. */
+.header__nav {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  display: none;
+  flex-direction: column;
+  gap: sp.$space-md;
+  padding: sp.$space-md sp.$grid-gap sp.$space-lg;
+  background: var(--color-papel);
+  border-bottom: 1px solid var(--color-borde);
+  box-shadow: 0 12px 24px var(--color-sombra);
+
+  &.is-open {
+    display: flex;
+  }
+
+  @include bp.up(lg) {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: sp.$space-lg;
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
+.header__links {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(lg) {
+    flex-direction: row;
+    gap: sp.$space-2xs;
+  }
+}
+
+.header__link {
+  display: block;
+  padding: sp.$space-sm sp.$space-xs;
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 2px;
+
+  &:hover {
+    color: var(--color-aji);
+    text-decoration-line: underline;
+  }
+}

@@ -1,0 +1,146 @@
+@use '../../../../styles/breakpoints' as bp;
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.combo {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-blanco);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radius-lg);
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out),
+    border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-dorado);
+    box-shadow: 0 14px 28px var(--color-sombra);
+  }
+
+  @include bp.reduced-motion {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.combo__art {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1.5rem 1rem;
+  background: var(--color-papel-tostado);
+}
+
+.combo__illustration {
+  width: 34%;
+  max-width: 7rem;
+}
+
+.combo__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+
+.combo__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.combo__name {
+  font-size: 1.5rem;
+}
+
+.combo__note {
+  padding: 0.2rem 0.65rem;
+  background: var(--color-carbon);
+  color: var(--color-papel);
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.combo__summary {
+  font-weight: 700;
+}
+
+.combo__order {
+  margin-top: 0.75rem;
+}
+
+.combo__desc {
+  color: var(--color-texto-suave);
+}
+
+.combo__includes-title {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.combo__includes {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0.45em;
+      left: 0.2rem;
+      width: 0.7rem;
+      height: 0.4rem;
+      border-left: 2px solid var(--color-aji);
+      border-bottom: 2px solid var(--color-aji);
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.combo__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.combo__price {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-aji);
+}
+
+/* Carbón sobre dorado; nunca blanco */
+.combo__savings {
+  padding: 0.35rem 0.8rem;
+  background: var(--color-dorado);
+  color: var(--color-carbon);
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 700;
+}

@@ -1,0 +1,67 @@
+<app-header />
+
+<main id="contenido" tabindex="-1">
+  <app-hero />
+  <app-repulgue-divider top="papel" bottom="papel-tostado" />
+
+  <!--
+    Bajo el pliegue: @defer con hidratación incremental. El HTML se prerenderiza completo (SEO)
+    y el JS de cada sección se carga e hidrata al entrar al viewport.
+    Las anclas viven fuera del @defer para que la navegación funcione siempre.
+  -->
+  <div id="menu">
+    @defer (on viewport; hydrate on viewport) {
+      <app-menu />
+    } @placeholder {
+      <div class="defer-placeholder defer-placeholder--tostado"></div>
+    }
+  </div>
+  <app-repulgue-divider top="papel-tostado" bottom="papel" />
+
+  <div id="combos">
+    @defer (on viewport; hydrate on viewport) {
+      <app-combos />
+    } @placeholder {
+      <div class="defer-placeholder"></div>
+    }
+  </div>
+  <app-repulgue-divider top="papel" bottom="carbon" />
+
+  @defer (on viewport; hydrate on viewport) {
+    <app-loyalty />
+  } @placeholder {
+    <div class="defer-placeholder defer-placeholder--strip"></div>
+  }
+  <app-repulgue-divider top="carbon" bottom="aji" />
+
+  <div id="historia">
+    @defer (on viewport; hydrate on viewport) {
+      <app-story />
+    } @placeholder {
+      <div class="defer-placeholder defer-placeholder--aji"></div>
+    }
+  </div>
+  <app-repulgue-divider top="aji" bottom="papel" />
+
+  <div id="ubicacion">
+    @defer (on viewport; hydrate on viewport) {
+      <app-location />
+    } @placeholder {
+      <div class="defer-placeholder"></div>
+    }
+  </div>
+  <app-repulgue-divider top="papel" bottom="dorado" />
+
+  <div id="proximamente">
+    @defer (on viewport; hydrate on viewport) {
+      <app-coming-soon />
+    } @placeholder {
+      <div class="defer-placeholder defer-placeholder--dorado"></div>
+    }
+  </div>
+  <app-repulgue-divider top="dorado" bottom="carbon" />
+</main>
+
+<app-whatsapp-fab [visible]="!footerVisible()" />
+
+<app-footer appInViewport (inViewportChange)="footerVisible.set($event)" />

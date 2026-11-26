@@ -1,0 +1,44 @@
+<section class="soon section" aria-labelledby="soon-title">
+  <div class="container">
+    <app-section-header
+      headingId="soon-title"
+      eyebrow="Próximamente"
+      heading="Lo que se viene"
+      subtitle="Estamos amasando harto más que masa."
+    />
+
+    <div class="soon__layout">
+      <p class="soon__opening" appReveal>
+        <span class="soon__opening-label">Abrimos en</span>
+        <time class="soon__opening-date" [attr.datetime]="business.openingIso">{{ business.opening }}</time>
+      </p>
+
+      <ul class="soon__list">
+        @for (item of items; track item.title; let i = $index) {
+          <li class="soon__item" appReveal [appRevealDelay]="(i + 1) * 120">
+            <!-- FOTO REAL: aquí puede ir una foto del producto o de la feria. -->
+            <app-food-illustration class="soon__art" [kind]="item.illustration" />
+            <div>
+              <p class="soon__when">
+                @if (item.whenIso) {
+                  <time [attr.datetime]="item.whenIso">{{ item.when }}</time>
+                } @else {
+                  {{ item.when }}
+                }
+              </p>
+              <h3 class="soon__title">{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="soon__cta">
+      <a appButton="secondary" [href]="instagramUrl" target="_blank" rel="noopener noreferrer">
+        Síguenos en Instagram para enterarte primero
+        <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+      </a>
+    </div>
+  </div>
+</section>

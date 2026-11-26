@@ -1,0 +1,151 @@
+@use '../../../../../styles/breakpoints' as bp;
+@use '../../../../../styles/spacing' as sp;
+
+:host {
+  display: block;
+  --btn-secondary-color: var(--color-aji);
+}
+
+.location__inner {
+  display: grid;
+  gap: sp.$space-3xl;
+  align-items: center;
+
+  @include bp.up(md) {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.location__text {
+  max-width: 34rem;
+  font-size: 1.1875rem;
+}
+
+.location__hours {
+  max-width: 26rem;
+  margin-top: sp.$space-xl;
+  padding: sp.$space-lg;
+  background: var(--color-blanco);
+  border: 2px solid var(--color-borde);
+  border-top: 4px solid var(--color-aji);
+  border-radius: var(--radius-md);
+
+  dl {
+    display: grid;
+    gap: sp.$space-2xs;
+    margin: sp.$space-sm 0 0;
+  }
+}
+
+.location__hours-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-aji);
+}
+
+.location__slot {
+  display: flex;
+  justify-content: space-between;
+  gap: sp.$space-md;
+  font-size: 1.125rem;
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &--closed dd {
+    font-weight: 400;
+    color: var(--color-texto-suave);
+  }
+}
+
+.location__note {
+  margin-top: sp.$space-sm;
+  padding-top: sp.$space-sm;
+  border-top: 1px dashed var(--color-borde);
+  font-size: 0.875rem;
+  color: var(--color-texto-suave);
+}
+
+.location__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: sp.$space-sm;
+  margin-top: sp.$space-xl;
+}
+
+.location__art {
+  position: relative;
+  width: min(100%, 24rem);
+  margin-inline: auto;
+}
+
+.location__steam {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  width: 22%;
+  transform: translate(-50%, -100%);
+  --steam-color: var(--color-carbon);
+}
+
+.cart {
+  width: 100%;
+  overflow: visible;
+}
+
+%stroke {
+  stroke: var(--color-carbon);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cart__awning {
+  @extend %stroke;
+  fill: var(--color-aji);
+}
+
+.cart__body {
+  @extend %stroke;
+  fill: var(--color-papel-tostado);
+}
+
+.cart__counter {
+  @extend %stroke;
+  fill: var(--color-dorado);
+}
+
+.cart__word {
+  fill: var(--color-carbon);
+  font-family: var(--font-base);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.cart__line,
+.cart__ground {
+  @extend %stroke;
+  fill: none;
+}
+
+.cart__ground {
+  opacity: 0.25;
+}
+
+.cart__wheel {
+  fill: var(--color-carbon);
+}
+
+.cart__hub {
+  fill: var(--color-papel);
+}

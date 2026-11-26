@@ -1,0 +1,62 @@
+<section class="location section" aria-labelledby="location-title">
+  <div class="container location__inner">
+    <div>
+      <app-section-header
+        headingId="location-title"
+        eyebrow="Horario y dónde"
+        heading="¿Dónde encontrarnos?"
+      />
+      <p class="location__text" appReveal>
+        Somos un carro móvil: vamos rotando por ferias, eventos y distintos puntos. El horario es
+        siempre el mismo; el lugar lo avisamos en Instagram y por WhatsApp.
+      </p>
+
+      <div class="location__hours" appReveal [appRevealDelay]="80">
+        <h3 class="location__hours-title">Horario</h3>
+        <dl>
+          @for (slot of business.openingHours; track slot.days) {
+            <div class="location__slot" [class.location__slot--closed]="!slot.opens">
+              <dt>{{ slot.days }}</dt>
+              <dd>{{ slot.hours }}</dd>
+            </div>
+          }
+        </dl>
+        <p class="location__note">{{ business.priceNote }}</p>
+      </div>
+
+      <div class="location__actions" appReveal [appRevealDelay]="120">
+        <a appButton="secondary" [href]="instagramUrl" target="_blank" rel="noopener noreferrer">
+          Ver en Instagram
+          <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+        </a>
+        <a appButton="whatsapp" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">
+          Preguntar por WhatsApp
+          <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- FOTO REAL: aquí puede ir una foto del carro. -->
+    <div class="location__art" aria-hidden="true" appReveal [appRevealDelay]="150">
+      <app-steam class="location__steam" />
+      <svg class="cart" viewBox="0 0 240 180" focusable="false">
+        <!-- Toldo con borde de repulgue -->
+        <path
+          class="cart__awning"
+          d="M20 22H220V50a10 10 0 0 1-20 0a10 10 0 0 1-20 0a10 10 0 0 1-20 0a10 10 0 0 1-20 0a10 10 0 0 1-20 0a10 10 0 0 1-20 0a10 10 0 0 1-20 0a10 10 0 0 1-20 0a10 10 0 0 1-20 0a10 10 0 0 1-20 0Z"
+        />
+        <path class="cart__line" d="M40 58v14M200 58v14" />
+        <rect class="cart__body" x="28" y="72" width="184" height="66" rx="8" />
+        <rect class="cart__counter" x="46" y="82" width="148" height="28" rx="4" />
+        <text class="cart__word" x="120" y="102" text-anchor="middle">shempin</text>
+        <path class="cart__line" d="M46 122h148" />
+        <path class="cart__line" d="M212 112l22-8" />
+        <circle class="cart__wheel" cx="72" cy="150" r="16" />
+        <circle class="cart__hub" cx="72" cy="150" r="5" />
+        <circle class="cart__wheel" cx="168" cy="150" r="16" />
+        <circle class="cart__hub" cx="168" cy="150" r="5" />
+        <path class="cart__ground" d="M6 168h228" />
+      </svg>
+    </div>
+  </div>
+</section>

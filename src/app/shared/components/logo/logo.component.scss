@@ -1,0 +1,84 @@
+@use '../../../../styles/breakpoints' as bp;
+
+:host {
+  display: inline-block;
+  max-width: 100%;
+  font-size: var(--logo-size, 1rem);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--color-carbon);
+
+  /* Sobre fondo oscuro el vapor pasa a papel, como en el sello */
+  &--inverse {
+    color: var(--color-papel);
+    --iso-steam: var(--color-papel);
+  }
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wordmark: Bricolage Grotesque Extra Bold, minúsculas y tracking cerrado */
+.logo__word {
+  font-size: 3.6em;
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+}
+
+/* Bajada: Semibold en mayúsculas espaciadas, en ají (dorado sobre fondos oscuros) */
+.logo__tagline {
+  margin-top: 0.85em;
+  font-size: 0.8em;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-aji);
+
+  /* En pantallas angostas puede pasar a dos líneas; desde tablet va en una sola, como en la carta */
+  @include bp.up(md) {
+    white-space: nowrap;
+  }
+
+  .logo--inverse & {
+    color: var(--color-dorado);
+  }
+}
+
+.logo__mark {
+  width: 6.5em;
+  flex-shrink: 0;
+}
+
+.logo--stacked {
+  flex-direction: column;
+  gap: 1em;
+  text-align: center;
+
+  .logo__text {
+    align-items: center;
+  }
+
+  .logo__mark {
+    width: 9em;
+  }
+}
+
+.logo--compact {
+  gap: 0.4em;
+
+  .logo__word {
+    font-size: 1.6em;
+  }
+
+  .logo__mark {
+    width: 2.4em;
+  }
+}

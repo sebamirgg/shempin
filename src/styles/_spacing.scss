@@ -1,0 +1,20 @@
+// Escala de espaciado. Úsala para separar secciones y bloques; evita valores sueltos.
+$space-2xs: 0.25rem;
+$space-xs: 0.5rem;
+$space-sm: 0.75rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2rem;
+$space-2xl: 2.5rem;
+$space-3xl: 3rem;
+
+// Entre secciones
+$section-space: clamp(3.5rem, 8vw, 6.5rem);
+$section-space-sm: clamp(2rem, 5vw, 3rem);
+// Entre el encabezado de una sección y su contenido
+$section-header-gap: clamp(2rem, 5vw, 3rem);
+
+// Grillas de tarjetas
+$grid-gap: 1.25rem;
+$grid-gap-lg: 1.5rem;
+$card-padding: 1.75rem;

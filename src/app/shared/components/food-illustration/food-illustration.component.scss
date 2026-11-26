@@ -1,0 +1,64 @@
+:host {
+  display: block;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.i-line {
+  fill: none;
+  stroke: var(--color-carbon);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.i-shadow {
+  fill: var(--color-carbon);
+  opacity: 0.1;
+}
+
+.i-dough,
+.i-paper,
+.i-ice {
+  fill: var(--color-papel);
+}
+
+.i-ice {
+  fill-opacity: 0.7;
+}
+
+.i-gold {
+  fill: var(--color-dorado);
+}
+
+.i-aji {
+  fill: var(--color-aji);
+}
+
+.i-coffee {
+  fill: var(--color-carbon);
+}
+
+.i-matcha {
+  fill: var(--color-matcha);
+}
+
+.i-crimp {
+  fill: none;
+  stroke: var(--color-carbon);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 1 7;
+  opacity: 0.4;
+}
+
+.i-straw {
+  fill: none;
+  stroke: var(--color-aji);
+  stroke-width: 5;
+  stroke-linecap: round;
+}

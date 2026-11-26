@@ -1,0 +1,178 @@
+@use 'styles/breakpoints' as bp;
+@use 'styles/spacing' as sp;
+
+/* ===== Tokens de marca ===== */
+:root {
+  --color-aji: #c23b22; /* principal, botones, acentos */
+  --color-dorado: #f2b84b; /* destacados, badges, hover (nunca con texto blanco) */
+  --color-carbon: #221e1b; /* texto y footer */
+  --color-papel: #fbf6ee; /* fondo */
+  --color-matcha: #4f6b2c; /* SOLO categoría bebestibles */
+  --color-blanco: #ffffff;
+  --color-whatsapp: #25d366; /* solo para el ícono, nunca como fondo de texto */
+
+  /* Derivados de la paleta */
+  --color-papel-tostado: color-mix(in srgb, var(--color-dorado) 14%, var(--color-papel));
+  --color-texto-suave: color-mix(in srgb, var(--color-carbon) 78%, var(--color-papel));
+  --color-borde: color-mix(in srgb, var(--color-carbon) 14%, transparent);
+  --color-sombra: color-mix(in srgb, var(--color-carbon) 12%, transparent);
+
+  --font-base: 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+
+  --header-h: 4.25rem;
+  --container: 72rem;
+
+  --focus-ring: var(--color-carbon);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 0.5rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-carbon);
+  background: var(--color-papel);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+main:focus {
+  outline: none;
+}
+
+/* ===== Utilidades ===== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: sp.$grid-gap;
+
+  @include bp.up(md) {
+    padding-inline: sp.$space-xl;
+  }
+}
+
+.section {
+  padding-block: sp.$section-space;
+
+  &--tight {
+    padding-block: sp.$section-space-sm;
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--color-carbon);
+  color: var(--color-papel);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: none;
+    --focus-ring: var(--color-dorado);
+  }
+}
+
+/* ===== appReveal (la directiva solo agrega .reveal en el navegador y sin reduced-motion) ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.7s var(--ease-out) var(--reveal-delay, 0ms),
+      transform 0.7s var(--ease-out) var(--reveal-delay, 0ms);
+  }
+}
+
+@include bp.reduced-motion {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

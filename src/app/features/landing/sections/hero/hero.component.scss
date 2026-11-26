@@ -1,0 +1,103 @@
+@use '../../../../../styles/breakpoints' as bp;
+@use '../../../../../styles/spacing' as sp;
+
+:host {
+  display: block;
+}
+
+.hero {
+  padding-block: sp.$section-space-sm sp.$section-space;
+  overflow: hidden;
+}
+
+.hero__inner {
+  display: grid;
+  gap: sp.$space-3xl;
+  align-items: center;
+
+  @include bp.up(lg) {
+    grid-template-columns: 1.15fr 1fr;
+  }
+}
+
+.hero__copy {
+  min-width: 0;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  margin-bottom: sp.$space-xl;
+  padding: 0.35rem 0.9rem;
+  background: var(--color-dorado);
+  color: var(--color-carbon);
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: inherit;
+  letter-spacing: normal;
+}
+
+/* El logo escala con el viewport; el tamaño base de todo el logo es --logo-size */
+.hero__logo {
+  --logo-size: clamp(0.75rem, 3.4vw, 1.6rem);
+}
+
+.hero__lead {
+  margin-top: sp.$space-2xl;
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero__sub {
+  max-width: 32rem;
+  margin-top: sp.$space-sm;
+  font-size: clamp(1.0625rem, 2.4vw, 1.25rem);
+  color: var(--color-texto-suave);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: sp.$space-sm;
+  margin-top: sp.$space-xl;
+}
+
+/* Horario como en la pizarra del carro */
+.hero__hours {
+  display: flex;
+  flex-wrap: wrap;
+  gap: sp.$space-xs sp.$space-lg;
+  margin: sp.$space-xl 0 0;
+  padding-top: sp.$space-md;
+  border-top: 3px solid var(--color-carbon);
+}
+
+.hero__slot {
+  display: flex;
+  gap: 0.4rem;
+  font-weight: 700;
+
+  dt::after {
+    content: ' ·';
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  &--closed {
+    font-weight: 400;
+    color: var(--color-texto-suave);
+  }
+}
+
+.hero__art {
+  width: min(100%, 30rem);
+  margin-inline: auto;
+}

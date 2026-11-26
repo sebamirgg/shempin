@@ -1,0 +1,120 @@
+@use '../../../../styles/breakpoints' as bp;
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.card {
+  --card-accent: var(--color-aji);
+  --card-media-bg: var(--color-papel-tostado);
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-blanco);
+  border: 2px solid var(--color-borde);
+  border-top: 4px solid var(--card-accent);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 0 var(--color-sombra);
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out),
+    border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-dorado);
+    box-shadow: 0 14px 28px var(--color-sombra);
+  }
+
+  @include bp.reduced-motion {
+    &:hover {
+      transform: none;
+    }
+  }
+
+  // Acento matcha: solo bebestibles
+  &--matcha {
+    --card-accent: var(--color-matcha);
+    --card-media-bg: color-mix(in srgb, var(--color-matcha) 12%, var(--color-papel));
+  }
+}
+
+.card__media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  background: var(--card-media-bg);
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.card__illustration {
+  width: 55%;
+}
+
+.card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.card__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.card__name {
+  font-size: 1.375rem;
+}
+
+/* Carbón sobre dorado (≈9:1). Nunca blanco sobre dorado. */
+.card__badge {
+  padding: 0.2rem 0.65rem;
+  background: var(--color-dorado);
+  color: var(--color-carbon);
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.card__desc {
+  color: var(--color-texto-suave);
+}
+
+.card__options {
+  display: grid;
+  gap: 0.25rem;
+  margin: auto 0 0;
+  padding: 0.75rem 0 0;
+  list-style: none;
+  border-top: 1px dashed var(--color-borde);
+}
+
+.card__option {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card__option-label {
+  font-size: 0.9375rem;
+  color: var(--color-texto-suave);
+}
+
+/* Precio destacado en ají (≈7:1 sobre blanco) */
+.card__price {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--color-aji);
+}

@@ -1,0 +1,107 @@
+@use '../../../../../styles/breakpoints' as bp;
+@use '../../../../../styles/spacing' as sp;
+
+:host {
+  display: block;
+  --focus-ring: var(--color-dorado);
+}
+
+.footer {
+  padding-block: sp.$section-space-sm sp.$space-xl;
+  background: var(--color-carbon);
+  color: var(--color-papel);
+}
+
+.footer__inner {
+  display: grid;
+  gap: sp.$space-2xl;
+
+  @include bp.up(md) {
+    grid-template-columns: 1.6fr 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.footer__logo {
+  --logo-size: 0.8rem;
+}
+
+.footer__tagline {
+  margin-top: sp.$space-lg;
+  opacity: 0.85;
+}
+
+/* Etiqueta: Semibold en mayúsculas espaciadas, como en la carta */
+.footer__heading {
+  margin-bottom: sp.$space-sm;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+}
+
+.footer__hours {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+
+  div {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.footer__social {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  font-weight: 700;
+  text-decoration: none;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  &:hover {
+    color: var(--color-dorado);
+  }
+}
+
+.footer__dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: sp.$space-xs sp.$space-lg;
+  margin-top: sp.$space-2xl;
+  padding-top: sp.$space-lg;
+  border-top: 1px solid color-mix(in srgb, var(--color-papel) 18%, transparent);
+  font-size: 0.875rem;
+  opacity: 0.8;
+}

@@ -1,0 +1,38 @@
+<section id="inicio" class="hero" aria-labelledby="hero-title">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">Carro móvil · Abrimos en <time [attr.datetime]="business.openingIso">{{ business.opening }}</time></p>
+
+      <h1 id="hero-title" class="hero__title">
+        <app-logo class="hero__logo" layout="horizontal" [animated]="true" />
+      </h1>
+
+      <p class="hero__lead">Comida al paso, hecha a mano.</p>
+      <p class="hero__sub">
+        Dumplings al vapor, empanadas cóctel de horno, café de especialidad y algo dulce para cerrar.
+      </p>
+
+      <div class="hero__actions">
+        <a appButton href="#menu">Ver la carta</a>
+        <a appButton="whatsapp" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">
+          ¿Dónde están hoy?
+          <span class="visually-hidden">Pregúntanos por WhatsApp (se abre en una pestaña nueva)</span>
+        </a>
+      </div>
+
+      <dl class="hero__hours">
+        @for (slot of business.openingHours; track slot.days) {
+          <div class="hero__slot" [class.hero__slot--closed]="!slot.opens">
+            <dt>{{ slot.days }}</dt>
+            <dd>{{ slot.hours }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+
+    <!-- FOTO REAL: aquí puede ir una foto de un dumpling y una empanada recién hechos. -->
+    <div class="hero__art">
+      <app-seal class="hero__seal" [spin]="true" />
+    </div>
+  </div>
+</section>
