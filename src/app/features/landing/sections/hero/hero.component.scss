@@ -21,7 +21,11 @@
 }
 
 .hero__copy {
+  position: relative;
+  z-index: 1;
   min-width: 0;
+  /* El logo se dimensiona según el ancho real de la columna, no del viewport */
+  container-type: inline-size;
 }
 
 .hero__eyebrow {
@@ -41,9 +45,10 @@
   letter-spacing: normal;
 }
 
-/* El logo escala con el viewport; el tamaño base de todo el logo es --logo-size */
+/* El logo escala con el ancho de la columna (cqi) para que la bajada nunca quede bajo el sello;
+   el tamaño base de todo el logo es --logo-size */
 .hero__logo {
-  --logo-size: clamp(0.75rem, 3.4vw, 1.6rem);
+  --logo-size: clamp(0.75rem, 3.2cqi, 1.6rem);
 }
 
 .hero__lead {

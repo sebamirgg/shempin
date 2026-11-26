@@ -1,59 +1,76 @@
 # Shempin
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+Landing de **Shempin**, un carro móvil de dumplings, empanadas cóctel y café de especialidad. Abre en marzo de 2027.
 
-## Development server
+Está hecha con Angular 21: componentes standalone, signals, SSR con prerender e hidratación incremental (`@defer`) para las secciones que quedan bajo el pliegue.
 
-To start a local development server, run:
+## Requisitos
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js 20 o superior
+- npm 11
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Scripts
 
-```bash
-ng generate --help
+| Comando                     | Qué hace                                                      |
+| --------------------------- | ------------------------------------------------------------- |
+| `npm start`                 | Servidor de desarrollo en `http://localhost:4200/`            |
+| `npm run build`             | Build de producción con SSR y prerender en `dist/shempin/`    |
+| `npm run watch`             | Build de desarrollo que se recompila al guardar               |
+| `npm test`                  | Tests unitarios con [Vitest](https://vitest.dev/)             |
+| `npm run serve:ssr:shempin` | Sirve el build SSR con Node (antes hay que correr `build`)    |
+
+## Estructura
+
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── config/      # Contacto, horario, tagline y URL del sitio (contact.config.ts)
+│   │   ├── data/        # Carta (menu.data.ts) y combos (combos.data.ts)
+│   │   ├── models/      # Tipos de producto y combo
+│   │   ├── seo/         # JSON-LD FoodEstablishment
+│   │   ├── services/    # MenuService y SeoService
+│   │   └── utils/       # Cálculo de precios
+│   ├── features/landing/
+│   │   ├── layout/      # Header, footer y botón flotante de WhatsApp
+│   │   └── sections/    # Hero, carta, combos, fidelización, historia, ubicación, próximamente
+│   └── shared/
+│       ├── components/  # Logo, isotipo, sello, tarjetas, divisor de repulgue, etc.
+│       └── directives/  # reveal e in-viewport
+├── resources/           # Referencias del sistema de marca (logo, carta, pizarra)
+├── styles/              # Breakpoints y espaciado en SCSS
+└── styles.scss          # Variables de color, tipografía y estilos base
+public/                  # Favicons, íconos, manifest e imagen Open Graph
 ```
 
-## Building
+## Editar el contenido
 
-To build the project run:
+Casi todo el contenido del sitio está en `src/app/core`, así que no hace falta tocar los componentes:
 
-```bash
-ng build
-```
+- **Contacto, horario y fecha de apertura**: `core/config/contact.config.ts`
+- **Productos y precios**: `core/data/menu.data.ts`
+- **Combos**: `core/data/combos.data.ts`
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Antes de publicar
 
-## Running unit tests
+En `contact.config.ts` hay valores de relleno que deben cambiarse:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- `whatsappNumber`: número real, en formato internacional sin `+` ni espacios (p. ej. `56912345678`)
+- `instagramHandle`: usuario de Instagram sin `@`
+- `SITE_CONFIG.url`: dominio definitivo
 
-```bash
-ng test
-```
+También conviene reemplazar las ilustraciones por fotos reales donde lo indican los comentarios `FOTO REAL` en las plantillas.
 
-## Running end-to-end tests
+## Marca
 
-For end-to-end (e2e) testing, run:
+El logo sigue la **Ruta A · Repulgue** del sistema de marca (ver `src/resources/`). Usa Bricolage Grotesque, que se carga desde Google Fonts. El componente `app-logo` tiene tres variantes:
 
-```bash
-ng e2e
-```
+- `horizontal`: isotipo a la izquierda (hero y footer)
+- `stacked`: isotipo arriba, centrado
+- `compact`: versión reducida para el header
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para fondos oscuros se usa `tone="inverse"`.
